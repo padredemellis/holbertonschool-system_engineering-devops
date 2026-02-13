@@ -3,7 +3,7 @@
 ## Description
 This project is the first step in learning how to design and communicate complex network infrastructures. In this repository, I explore the components of a web stack, their roles, and how data flows from a user's request to a server's response.
 
-## Task 0: Simple Web Stack
+Simple Web Stack
 The goal of this task is to design a one-server infrastructure that hosts a website reachable via `www.foobar.com`.
 
 ### Diagram
@@ -23,6 +23,8 @@ The goal of this task is to design a one-server infrastructure that hosts a webs
 2. **Downtime for Maintenance:** Updating code or software requires restarting services, which causes temporary service interruption.
 3. **Scalability:** The infrastructure cannot handle high traffic loads as all resources are limited to one machine.
 
+Distributed web infrastructure
+
 1. Why add a Load Balancer?
 Answer: To distribute incoming traffic across multiple servers. This prevents any single server from becoming overloaded and increases the availability of the website.
 
@@ -40,6 +42,21 @@ Primary (Master): Is the only one that can Write data (insert, update, delete).
 Replica (Slave): Only Reads data. It synchronizes with the Primary to have the same information.
 
 Difference: The application sends "save" actions to the Primary and "view" actions (like reading a profile) to the Replica to balance the work.
+
+Secured and monitored web infrastructure
+
+1. Why Firewalls?
+Answer: To protect the servers from unauthorized access. They act as a filter that only allows legitimate traffic through specific ports (like 80 or 443).
+
+2. Why HTTPS?
+Answer: To encrypt the communication between the user and the server. This ensures that sensitive data (like passwords) cannot be stolen by "pirates" (hackers) during transit.
+
+3. Why Monitoring?
+Answer: To have visibility into the health of the infrastructure. It helps us detect if a server is down, if the CPU is too high, or if there is an error in the application.
+
+How it collects data: The clients (agents) installed on each server send metrics (logs, usage) to a central service (like Sumologic) periodically.
+
+Monitoring QPS (Queries Per Second): To monitor QPS, we need to analyze the Web Server logs (Nginx) and count how many requests are being processed every second.
 
 ## Author
 * **Emanuel Romero** - Student at Holberton School.
