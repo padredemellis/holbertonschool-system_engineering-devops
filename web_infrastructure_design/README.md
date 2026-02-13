@@ -23,5 +23,23 @@ The goal of this task is to design a one-server infrastructure that hosts a webs
 2. **Downtime for Maintenance:** Updating code or software requires restarting services, which causes temporary service interruption.
 3. **Scalability:** The infrastructure cannot handle high traffic loads as all resources are limited to one machine.
 
+1. Why add a Load Balancer?
+Answer: To distribute incoming traffic across multiple servers. This prevents any single server from becoming overloaded and increases the availability of the website.
+
+2. Distribution Algorithm (Round Robin)
+How it works: The Load Balancer sends the first request to Server 1, the second to Server 2, the third back to Server 1, and so on. It’s like a dealer handing out cards in a circle.
+
+3. Active-Active vs. Active-Passive
+Active-Active: Both servers are working at the same time, sharing the load. (Este es el que estamos usando).
+
+Active-Passive: Only one server is working. The second one is "sleeping" and only wakes up if the first one fails.
+
+4. Database Primary-Replica (Master-Slave)
+Primary (Master): Is the only one that can Write data (insert, update, delete).
+
+Replica (Slave): Only Reads data. It synchronizes with the Primary to have the same information.
+
+Difference: The application sends "save" actions to the Primary and "view" actions (like reading a profile) to the Replica to balance the work.
+
 ## Author
 * **Emanuel Romero** - Student at Holberton School.
