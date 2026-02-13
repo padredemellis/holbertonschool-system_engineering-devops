@@ -58,5 +58,19 @@ How it collects data: The clients (agents) installed on each server send metrics
 
 Monitoring QPS (Queries Per Second): To monitor QPS, we need to analyze the Web Server logs (Nginx) and count how many requests are being processed every second.
 
+Scale up
+
+1. Why add another Load Balancer?
+Answer: To avoid a Single Point of Failure (SPOF) at the entry point. By configuring them as a cluster, if the primary HAproxy fails, the backup takes over immediately (High Availability).
+
+2. Why split components into their own servers?
+Answer:
+
+Performance: Each server can use 100% of its RAM and CPU for one specific task (e.g., the Database won't fight with the Web Server for memory).
+
+Scalability: We can add more Application Servers without needing to add more Databases.
+
+Security: We can isolate the Database server so it's not accessible from the public internet, only from the App Servers.
+
 ## Author
 * **Emanuel Romero** - Student at Holberton School.
